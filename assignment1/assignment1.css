@@ -1,0 +1,52 @@
+html {
+    display: table;
+    margin: auto;
+}
+
+
+body {
+
+    background-color: #cfcfcf;
+
+    min-height: auto;
+    border: 1px solid rgb(0, 0, 0);
+
+
+}
+
+
+#wrapper {
+
+    min-width: 800px;
+    background-color: #ffffff;
+    padding: 30px;
+    padding-bottom: 5px;
+    padding-top: 20px;
+
+}
+
+
+table,
+th,
+td {
+    border: 2px solid rgb(13, 0, 87);
+    border-collapse: collapse;
+    font-size: medium;
+
+}
+
+#myTable1 tr:nth-of-type(odd) {
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#myTable1 tr:nth-of-type(even) {
+    background-color: #c4c4c4;
+    text-align: center;
+}
+
+.form-inline input {
+    font-weight: bold;
+    font-size: large;
+    color: rgb(62, 133, 34);
+}
