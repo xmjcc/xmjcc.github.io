@@ -27,7 +27,9 @@ footer {
     background-color: #ffffff;
     padding: 30px;
     padding-bottom: 5px;
-    padding-top: 20px;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
     display: flex;
     flex-direction: column;
     min-height: 900px;
