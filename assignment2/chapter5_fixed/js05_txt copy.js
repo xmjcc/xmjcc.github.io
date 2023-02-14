@@ -59,13 +59,13 @@ function setupGallery() {
       let image = document.createElement("img");
       image.src = imgFiles[i];
       image.alt = imgCaptions[i];
-      image.id = "image" + i;
+      image.id = "imageid";
       image.onclick = createModal;
       slideBox.appendChild(image);
 
    }
 
-   let favoriteImage = document.getElementById("favoritepics")
+   // let favoriteImage = document.getElementById("favoritepics")
 
    // add favorite button
 
@@ -118,94 +118,20 @@ function setupGallery() {
 
    //add to favorite function
 
-   function addToFavarite() {
-
-      let favoriteImage = document.getElementById("favoritepics")
-
-      //let firstImage = slideBox.firstElementChild.cloneNode("true");
-      if (favoritepicNumber >= 5) {
-         window.alert("A maximum of 5 pics can be added to the favourites, one will be removed");
-         favoriteImage.removeChild(favoriteImage.lastElementChild);
-         favoritepicNumber--;
-
-      }
-      else {
-
-         //check if the picture already in favorite, if not then add if alert msg
-
-         let j = 0;
-         for (let i = 0; i < favoritepicNumber; i++) {
-
-            const imgSrc = globalmodalImage.getAttribute('src');
-            // console.log(imgSrc)；
-            // console.log(favoriteImages[i]);
-
-
-            if (imgSrc == favoriteImages[i]) {
-               j++;
-               window.alert("already in favorite picture!");
-            };
-         }
-
-         if (j == 0) {
-            // Document.getElementById("lbOverlay");
-
-
-            favoriteImage.appendChild(globalmodalImage);
-            globalmodalImage.onclick = favoriteView;
-            const imgSrc = globalmodalImage.getAttribute('src');
-            favoriteImages[favoritepicNumber] = imgSrc;
-            favoritepicNumber++;
-            document.body.removeChild(modalWindow);
 
 
 
 
-
-         };
-
-
-         // let currentwindow=Document.getElementById("lbOverlay");
-
-
-
-         // console.log(favoritepicNumber);
-         // console.log(imgSrc);
-         // console.log(favoriteImages)
-
-      }
-
-      //favoriteImages[favoritepicNumber]=
-   }
-
-   // document.body.removeChild(favoritewindow);
-
-   //close widow once added
-
-   // localStorage.setItem('favoriteImages', JSON.stringify(favoriteImages));
-   // const storedArray = JSON.parse(localStorage.getItem('favoriteImages'));
-
-
-
-
-
-
-
-
-   let favoritewindow;
-   let globalmodalImage;
-   let modalWindow;
 
 
 
    function createModal() {
-      modalWindow = document.createElement("div");
+      let modalWindow = document.createElement("div");
       modalWindow.id = "lbOverlay";
       let figureBox = document.createElement("figure");
       modalWindow.appendChild(figureBox);
 
       let modalImage = this.cloneNode("true");
-      globalmodalImage = modalImage;
       figureBox.appendChild(modalImage);
 
       let figureCaption = document.createElement("figcaption");
@@ -223,63 +149,71 @@ function setupGallery() {
       let buttoncontent = document.createTextNode("Add to Favorite");
       favButton.appendChild(buttoncontent);
 
-      favButton.onclick = addToFavarite;
+      favButton.onclick = function addToFavarite() {
 
-      favoritewindow = modalWindow.appendChild(favButton);
+         let favoriteImage = document.getElementById("favoritepics")
+         //let firstImage = slideBox.firstElementChild.cloneNode("true");
+         if (favoritepicNumber >= 5) {
+            window.alert("A maximum of 5 pics can be added to the favourites, one will be removed");
+            favoriteImage.removeChild(favoriteImage.lastElementChild);
+            favoritepicNumber--;
+
+         }
+         else {
+
+            //check if the picture already in favorite, if not then add if alert msg
+
+            let j = 0;
+            for (let i = 0; i < favoritepicNumber; i++) {
+               const imgSrc = modalImage.getAttribute('src');
+               // console.log(imgSrc)；
+               // console.log(favoriteImages[i]);
+
+
+               if (imgSrc == favoriteImages[i]) {
+                  j++;
+                  window.alert("already in favorite picture!");
+               };
+            }
+
+            if (j == 0) {
+               // Document.getElementById("lbOverlay");
+
+
+
+
+               favoriteImage.appendChild(modalImage);
+               modalImage.onclick = createModal;
+               const imgSrc = modalImage.getAttribute('src');
+               favoriteImages[favoritepicNumber] = imgSrc;
+               favoritepicNumber++;
+               console.log(favoritepicNumber);
+               console.log(imgSrc);
+               console.log(favoriteImages)
+
+            }
 
 
 
 
 
-      modalWindow.appendChild(closeBox);
 
-      document.body.appendChild(modalWindow);
-      //close widow once added
+            //favoriteImages[favoritepicNumber]=
+         }
 
-   }
-
-   function favoriteView() {
-
-      modalWindow = document.createElement("div");
-      modalWindow.id = "lbOverlay";
-      let figureBox = document.createElement("figure");
-      modalWindow.appendChild(figureBox);
-
-      let modalImage = this.cloneNode("true");
-      // console.log(modalImage.id);
-      globalmodalImage = modalImage;
-      figureBox.appendChild(modalImage);
-
-      let figureCaption = document.createElement("figcaption");
-      figureCaption.textContent = modalImage.alt;
-      figureBox.appendChild(figureCaption);
-
-      let closeBox = document.createElement("div");
-      closeBox.id = "lbOverlayClose";
-      closeBox.innerHTML = "&times;";
-      closeBox.onclick = function () {
+         //close widow once added
          document.body.removeChild(modalWindow);
+         // localStorage.setItem('favoriteImages', JSON.stringify(favoriteImages));
+         // const storedArray = JSON.parse(localStorage.getItem('favoriteImages'));
+
+
+
       }
 
-      let rdfavButton = document.createElement("BUTTON");
-      let buttoncontent = document.createTextNode("Remove from favorite");
-      rdfavButton.appendChild(buttoncontent);
-
-      rdfavButton.onclick = function rmFavarite() {
-
-         const element = document.getElementById(modalImage.id);
-         element.remove();
-
-         favoritepicNumber--;
-         document.body.removeChild(modalWindow);
 
 
 
-
-      };
-
-      favoritewindow = modalWindow.appendChild(rdfavButton);
-
+      modalWindow.appendChild(favButton);
 
 
 
@@ -290,5 +224,6 @@ function setupGallery() {
       //close widow once added
 
    }
+
 
 }
