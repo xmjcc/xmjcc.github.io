@@ -12,6 +12,9 @@
 
 window.addEventListener("load", setupGallery);
 
+
+
+
 function setupGallery() {
    let imageCount = imgFiles.length;
    let galleryBox = document.getElementById("lightbox");
@@ -65,7 +68,10 @@ function setupGallery() {
 
    }
 
-   let favoriteImage = document.getElementById("favoritepics")
+
+   
+
+
 
    // add favorite button
 
@@ -77,6 +83,13 @@ function setupGallery() {
    // favoriteImage.appendChild(image);
 
    // }
+
+   // initialize array from storage
+
+
+
+   // update both the array and local storage
+
 
 
 
@@ -158,9 +171,7 @@ function setupGallery() {
             favoritepicNumber++;
             document.body.removeChild(modalWindow);
 
-
-
-
+         
 
          };
 

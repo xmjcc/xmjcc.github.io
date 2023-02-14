@@ -37,3 +37,6 @@ let imgCount = imgFiles.length;
 
 let favoriteImages = new Array();
 
+
+
+
