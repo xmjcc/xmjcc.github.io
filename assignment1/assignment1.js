@@ -9,12 +9,32 @@ function
 
 // let outMax = 2, innerMax = 2;
 
+
+"use strict;"
 window.addEventListener("load", (event) => {
     console.log("page is fully loaded");
     createATable();
 });
 
+let pct ; // percent value  
+let amt ; // amount value
 
+function defineVariables() {
+    pct = 25; // percent value  
+    amt = 1600; // amount value
+}
+
+
+
+function calculatePercent() {
+    let result = amt * pct / 100;
+    document.write("<p>" + pct + "% of " + amt + " is: ");
+    document.write(result + "</p>");
+}
+
+
+defineVariables();
+calculatePercent();
 
 const createATable = () => {
 
@@ -40,7 +60,7 @@ const createATable = () => {
         var x = document.getElementById('myTable1').insertRow(r);
         for (var c = 0; c < parseInt(cn, 10); c++) {
             var y = x.insertCell(c);
-            y.innerHTML = `${r+1} x ${c+1} = ${(r+1) * (c+1)} `;
+            y.innerHTML = `${r + 1} x ${c + 1} = ${(r + 1) * (c + 1)} `;
         }
     }
 
