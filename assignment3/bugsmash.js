@@ -13,7 +13,8 @@ window.onload = function () {
 let bugPosX = 0;
 let bugPosY = 0;
 let score = 0;
-let speed = 2000;
+let initialySpeed=3000;
+let speed = initialySpeed;
 let mysetInterval = null;
 let previousscore = 0;
 
@@ -32,7 +33,7 @@ let gamestartBtn = document.getElementById("gamestart");
 
 resetScoreBtn.addEventListener("click", () => {
     score = 0;
-    speed = 2000;
+    speed = initialySpeed;
     clearInterval(mysetInterval);
     bugEl.style.left = 0 + "px";
     bugEl.style.top = 0 + "px";
@@ -51,7 +52,7 @@ gamestartBtn.addEventListener("click", () => {
 
 resetSpeedBtn.addEventListener("click", () => {
     clearInterval(mysetInterval);
-    speed = 2000;
+    speed = initialySpeed;
     score = Math.max(score, 0);
 
     scoreEl.innerHTML = "Score:" + score;
@@ -59,7 +60,9 @@ resetSpeedBtn.addEventListener("click", () => {
 
 });
 
-
+gameAreaEl.oncontextmenu = function() {
+    return false;
+    }
 
 // gameAreaEl.addEventListener('click', handleClickEventOnTarget);
 bugEl.addEventListener('click', handleClickEventOnTarget);
@@ -122,17 +125,6 @@ function handleClickEventOnTarget(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-    // previousscore = score; //record revious score for compare with current score
 
 
 };
