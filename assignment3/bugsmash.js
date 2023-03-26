@@ -122,6 +122,7 @@ function handleClickEventOnTarget(event) {
 
     else {
         score--;
+        score = Math.max(score, 0);
         scoreEl.innerHTML = "Score:" + score;
 
         // console.log("in current area is bugArea", event.currentTarget)
