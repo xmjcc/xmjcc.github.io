@@ -35,8 +35,8 @@ resetScoreBtn.addEventListener("click", () => {
     score = 0;
     speed = initialySpeed;
     clearInterval(mysetInterval);
-    bugEl.removeEventListener('click', handleClickEventOnTarget);
-    gameAreaEl.removeEventListener('click', handleClickEventOnTarget, true);
+    bugEl.removeEventListener('click', handleClickEventOnTarget, true);
+    gameAreaEl.removeEventListener('click', handleClickEventOnTarget);
     bugEl.style.left = 0 + "px";
     bugEl.style.top = 0 + "px";
 
@@ -47,8 +47,8 @@ resetScoreBtn.addEventListener("click", () => {
 
 
 gamestartBtn.addEventListener("click", () => {
-    bugEl.addEventListener('click', handleClickEventOnTarget);
-    gameAreaEl.addEventListener('click', handleClickEventOnTarget, true);
+    bugEl.addEventListener('click', handleClickEventOnTarget, true);
+    gameAreaEl.addEventListener('click', handleClickEventOnTarget);
     startTime();
 
 
@@ -96,6 +96,7 @@ function handleClickEventOnTarget(event) {
 
     if (event.currentTarget.id === "target") {
         // do not add score for fisrt click
+        //    console.log("the current target is bugItem", event.currentTarget);
 
         score = score + 2;
         score = Math.max(score, 0);
@@ -116,13 +117,12 @@ function handleClickEventOnTarget(event) {
     }
 
 
-
-
-    // console.log("the current target is bugItem", event.currentTarget);
+ 
 
 
     else {
         score--;
+        scoreEl.innerHTML = "Score:" + score;
 
         // console.log("in current area is bugArea", event.currentTarget)
     }
