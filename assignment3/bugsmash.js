@@ -13,7 +13,7 @@ window.onload = function () {
 let bugPosX = 0;
 let bugPosY = 0;
 let score = 0;
-let initialySpeed=3000;
+let initialySpeed = 3000;
 let speed = initialySpeed;
 let mysetInterval = null;
 let previousscore = 0;
@@ -35,9 +35,11 @@ resetScoreBtn.addEventListener("click", () => {
     score = 0;
     speed = initialySpeed;
     clearInterval(mysetInterval);
+    bugEl.removeEventListener('click', handleClickEventOnTarget);
+    gameAreaEl.removeEventListener('click', handleClickEventOnTarget, true);
     bugEl.style.left = 0 + "px";
     bugEl.style.top = 0 + "px";
-    
+
     // console.log("reset button cliked");
     scoreEl.innerHTML = "Score:" + score;
 
@@ -45,6 +47,8 @@ resetScoreBtn.addEventListener("click", () => {
 
 
 gamestartBtn.addEventListener("click", () => {
+    bugEl.addEventListener('click', handleClickEventOnTarget);
+    gameAreaEl.addEventListener('click', handleClickEventOnTarget, true);
     startTime();
 
 
@@ -60,13 +64,10 @@ resetSpeedBtn.addEventListener("click", () => {
 
 });
 
-gameAreaEl.oncontextmenu = function() {
+gameAreaEl.oncontextmenu = function () {
     return false;
-    }
+}
 
-// gameAreaEl.addEventListener('click', handleClickEventOnTarget);
-bugEl.addEventListener('click', handleClickEventOnTarget);
-gameAreaEl.addEventListener('click', handleClickEventOnTarget, true);
 
 
 function startTime() {
@@ -84,47 +85,47 @@ function moveObject() {
     bugEl.style.top = bugPosY + "px";
     speedEl.innerHTML = "Speed (milliseconds):" + speed;
 
-
 }
 
 let counter = 0;
 
+
+
 function handleClickEventOnTarget(event) {
+
+
     if (event.currentTarget.id === "target") {
         // do not add score for fisrt click
-        if (counter == 0) { counter++ } //d bug in start position, click no score
-        else {
-            score = score + 2;
-            score = Math.max(score, 0);
 
-            scoreEl.innerHTML = "Score:" + score;
+        score = score + 2;
+        score = Math.max(score, 0);
 
+        scoreEl.innerHTML = "Score:" + score;
 
-            if (score % 5 == 0 && score > 0 && score > previousscore) {
+        if (score % 20 == 0 && score > 0 && score > previousscore) {
 
-                speed = speed - 100;
-                clearInterval(mysetInterval);
-                startTime();
+            speed = speed - 100;
+            clearInterval(mysetInterval);
+            startTime();
 
-            }
-            if (score % 5 == 4 && score > 0 && score < previousscore) {
-
-                speed = speed + 100;
-            }
         }
+        if (score % 20 == 19 && score > 0 && score < previousscore) {
 
-
-        // console.log("the current target is bugItem", event.currentTarget);
-
-
-    } else {
-        score--;
-
-        // console.log("in current area is bugArea", event.currentTarget)
+            speed = speed + 100;
+        }
     }
 
 
 
+
+    // console.log("the current target is bugItem", event.currentTarget);
+
+
+    else {
+        score--;
+
+        // console.log("in current area is bugArea", event.currentTarget)
+    }
 
 
 };
