@@ -35,6 +35,13 @@ div#score {
     
 }
 
+div#speed {
+
+    font-size: 30px;
+    color: #5c43a7;
+    
+}
+
 html {
     
     margin: auto;
