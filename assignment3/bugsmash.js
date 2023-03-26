@@ -102,16 +102,16 @@ function handleClickEventOnTarget(event) {
 
         scoreEl.innerHTML = "Score:" + score;
 
-        if (score % 20 == 0 && score > 0 && score > previousscore) {
+        if (score % 20 == 0 && score > 0 && score > previousscore && speed > 200) {
 
-            speed = speed - 100;
+            speed = speed - 800;
             clearInterval(mysetInterval);
             startTime();
 
         }
         if (score % 20 == 19 && score > 0 && score < previousscore) {
 
-            speed = speed + 100;
+            speed = speed + 800;
         }
     }
 
