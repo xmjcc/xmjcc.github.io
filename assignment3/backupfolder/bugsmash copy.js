@@ -15,7 +15,7 @@ let bugPosY = 0;
 let score = 0;
 let speed = 2000;
 let mysetInterval = null;
-let previousscore = 0;
+let previousscore =0;
 
 let scoreEl = document.getElementById("score");
 let speedEl = document.getElementById("speed");
@@ -45,7 +45,7 @@ gamestartBtn.addEventListener("click", () => {
 });
 
 resetSpeedBtn.addEventListener("click", () => {
-    clearInterval(mysetInterval);
+    clearInterval(mysetInterval)
     speed = 2000;
     score = Math.max(score, 0);
 
@@ -57,24 +57,30 @@ resetSpeedBtn.addEventListener("click", () => {
 
 
 // gameAreaEl.addEventListener('click', handleClickEventOnTarget);
-bugEl.addEventListener('click', handleClickEventOnTarget);
+bugEl.addEventListener('click', handleClickEventOnTarget, true);
 gameAreaEl.addEventListener('click', handleClickEventOnTarget, true);
 
 
 function startTime() {
-    mysetInterval = setInterval(moveObject, speed);
+    mysetInterval = setInterval( moveObject, speed);
+}
+
+
+function moveObject() {
+  
+    randomPosition();
+    speedEl.innerHTML = "Speed (milliseconds):" + speed;
 }
 
 
 
-function moveObject() {
+function randomPosition() {
 
     bugPosX = 550 * Math.random();
     bugPosY = 350 * Math.random();
 
     bugEl.style.left = bugPosX + "px";
     bugEl.style.top = bugPosY + "px";
-    speedEl.innerHTML = "Speed (milliseconds):" + speed;
 
 
 }
@@ -85,25 +91,7 @@ function handleClickEventOnTarget(event) {
     if (event.currentTarget.id === "target") {
         // do not add score for fisrt click
         if (counter == 0) { counter++ } //d bug in start position, click no score
-        else {
-            score = score + 2;
-            score = Math.max(score, 0);
-
-            scoreEl.innerHTML = "Score:" + score;
-
-
-            if (score % 5 == 0 && score > 0 && score > previousscore) {
-
-                speed = speed - 100;
-                clearInterval(mysetInterval);
-                startTime();
-
-            }
-            if (score % 5 == 4 && score > 0 && score < previousscore) {
-
-                speed = speed + 100;
-            }
-        }
+        else { score = score + 2; }
 
 
         // console.log("the current target is bugItem", event.currentTarget);
@@ -117,26 +105,31 @@ function handleClickEventOnTarget(event) {
 
 
 
+    score = Math.max(score, 0);
+
+    scoreEl.innerHTML = "Score:" + score;
+
+
+    if (score % 5 == 0 & score > 0) {
+
+        if (score > previousscore){
+            speed = speed - 100;
+        } else{
+            speed = speed+100;
+        }
+      
+        if (mysetInterval !== null) { clearInterval(mysetInterval) }
+
+        mysetInterval = setInterval( moveObject, speed);    
+
+        previousscore = score; //record revious score for compare with current score
+    
+
+    };
 
 
 
-
-
-
-
-
-
-
-    // previousscore = score; //record revious score for compare with current score
-
-
-};
-
-
-
-
-
-
+}
 
 
 
