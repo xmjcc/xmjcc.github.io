@@ -32,7 +32,12 @@ let gamestartBtn = document.getElementById("gamestart");
 
 resetScoreBtn.addEventListener("click", () => {
     score = 0;
-    console.log("reset button cliked");
+    speed = 2000;
+    clearInterval(mysetInterval);
+    bugEl.style.left = 0 + "px";
+    bugEl.style.top = 0 + "px";
+    
+    // console.log("reset button cliked");
     scoreEl.innerHTML = "Score:" + score;
 
 });
