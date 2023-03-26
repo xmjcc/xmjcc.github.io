@@ -63,6 +63,8 @@ div#lightbox div#rightBox {
 }
 
 /* Styles for the box containing slide images */
+
+/* div#lightbox div#slideBox */
 div#lightbox div#slideBox {
    display: flex;
    flex-direction: row;
