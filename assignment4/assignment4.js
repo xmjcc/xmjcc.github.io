@@ -23,7 +23,6 @@ function init() {
 
       let picAraary = JSON.parse(xhr.responseText);
       let number = picAraary.length-1; 
-      console.log("mynumber", i)
       percentage = i/number*100;
       var elem = document.getElementById("myBar");
       elem.style.width = percentage + "%";
@@ -75,7 +74,7 @@ function init() {
 
 
       const rootNode = closeBox.getRootNode();
-      console.log('ssss', rootNode);
+      // console.log('ssss', rootNode);
 
       document.body.appendChild(modalWindow);
       //close widow once added
