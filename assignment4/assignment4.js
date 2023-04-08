@@ -18,6 +18,18 @@ function init() {
    // Page Objects
    // let stories = document.getElementById("stories");
 
+   let percentage = 1;
+   function progessbar(i){
+
+      let picAraary = JSON.parse(xhr.responseText);
+      let number = picAraary.length-1; 
+      console.log("mynumber", i)
+      percentage = i/number*100;
+      var elem = document.getElementById("myBar");
+      elem.style.width = percentage + "%";
+   }
+
+
    function openMymodal(y){
 
       // console.log("x", x);
@@ -32,9 +44,24 @@ function init() {
       modalImage.src = y.src;
       figureBox.appendChild(modalImage);
 
+
+      let title = document.createElement("div");
+      title.classList.add('title');
+      title.textContent = y.title;
+      figureBox.appendChild(title);
+
+
       let figureCaption = document.createElement("figcaption");
-      figureCaption.textContent = y.alt;
+      figureCaption.textContent = y.description;
       figureBox.appendChild(figureCaption);
+
+      const price = document.createElement('div');
+      price.classList.add('price');
+      price.innerText = "$"+y.price;
+      figureBox.appendChild(price);
+
+
+
 
       let closeBox = document.createElement("div");
       closeBox.id = "lbOverlayClose";
@@ -42,8 +69,6 @@ function init() {
       closeBox.onclick = function () {
          document.body.removeChild(modalWindow);
       }
-
-   
 
 
       modalWindow.appendChild(closeBox);
@@ -67,53 +92,74 @@ function init() {
       let imageArray = JSON.parse(responseData);
       // console.log(imageArray[0])
 
-      
+
 
       for (let i = 0; i < imageArray.length; i++) {
 
          const myElement = document.getElementById("myImage");
-         let figureBox = document.createElement("figure");
 
-         myElement.appendChild(figureBox);
+         let imgSrc = imageArray[i].src;
+         let imgalt = imageArray[i].alt;
+         let imgprice = "$"+imageArray[i].price;
+         let imgdescription = imageArray[i].description;
+         let imgactionLabel = imageArray[i].actionLabel;
+
+         var img = document.createElement("IMG");
+         img.setAttribute("src", imgSrc);
+
+
+         const imageContainer = document.createElement('div');
+         imageContainer.classList.add('image-container');
+
+         imageContainer.appendChild(img);
+
+
+         const title = document.createElement('div');
+         title.classList.add('title');
+         title.innerText = imgalt;
+         imageContainer.appendChild(title);
+
+         
+         const price = document.createElement('div');
+         price.classList.add('price');
+         price.innerText = imgprice;
+         imageContainer.appendChild(price);
+
+         const description = document.createElement('div');
+         description.classList.add('description');
+         description.innerText = imgdescription;
+         imageContainer.appendChild(description);
+
+         if (imgactionLabel){ const actionLabel = document.createElement('div');
+         actionLabel.classList.add('actionLabel');
+         actionLabel.innerText = imgactionLabel;
+         imageContainer.appendChild(actionLabel);
+         actionLabel.addEventListener("click", myfetch);
+}
+
+        
+         setTimeout(loadImage, 1000*i);
+        
+
+         function loadImage()
+         {myElement.appendChild(imageContainer);
+            progessbar(i);}
+         
 
        
-         let imgSrc = imageArray[i].src;
-
-         let img = document.createElement("IMG");
-         img.setAttribute("src", imgSrc);
-         figureBox.appendChild(img);
-
-        
-
-      
-        
-
-         // let figureCaption = document.createElement("figcaption");
-         // figureCaption.textContent = imageArray[i].alt;
-         // figureBox.appendChild(figureCaption);
 
 
-        
+         img.addEventListener("click", myfetch);
 
-
-
-
-
-         img.addEventListener("click", () => {
-
+         function myfetch()
+         {
             if (imageArray[i].actionURL) {
-               console.log("actionURL is", imageArray[i].actionURL);
+               // console.log("actionURL is", imageArray[i].actionURL);
                fetch(imageArray[i].actionURL)
                   .then(x => x.json())
                   .then(y => openMymodal(y));
 
-
-            }
-
-
-         });
-         myElement.appendChild(img);
-
+         }
 
 
       };
@@ -121,6 +167,8 @@ function init() {
 
    };
 
+
+}
 
 
 
