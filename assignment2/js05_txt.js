@@ -239,9 +239,6 @@ function setupGallery() {
       favoritewindow = modalWindow.appendChild(favButton);
 
 
-
-
-
       modalWindow.appendChild(closeBox);
 
       document.body.appendChild(modalWindow);

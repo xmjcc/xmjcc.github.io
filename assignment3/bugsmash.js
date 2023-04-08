@@ -103,14 +103,14 @@ function handleClickEventOnTarget(event) {
 
         scoreEl.innerHTML = "Score:" + score;
 
-        if (score % 20 == 0 && score > 0 && score > previousscore && speed > 200) {
+        if (score % 10 == 0 && score > 0 && score > previousscore && speed > 200) {
 
             speed = speed - 800;
             clearInterval(mysetInterval);
             startTime();
 
         }
-        if (score % 20 == 19 && score > 0 && score < previousscore) {
+        if (score % 10 == 9 && score > 0 && score < previousscore) {
 
             speed = speed + 800;
         }
@@ -127,6 +127,8 @@ function handleClickEventOnTarget(event) {
 
         // console.log("in current area is bugArea", event.currentTarget)
     }
+
+    previousscore=score;
 
 
 };

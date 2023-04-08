@@ -1,0 +1,131 @@
+/*  JavaScript 7th Edition
+    Chapter 11
+    Chapter case
+
+    Style sheet for SBlogger website
+
+    Filename: styles.css
+*/
+
+/* apply a natural box layout model to all elements */
+
+body {
+   line-height: 1;
+   width: 1000px;
+   background: white;
+   margin: 0 auto;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+div#myImage img {
+   display: block;
+   width: 230px;
+   height: auto;
+   margin-right: 13px;
+   filter: opacity(0.8);
+   cursor: pointer;
+   outline: 2px solid #9C6908;
+   box-shadow: 3px 3px 10px black;
+   user-select: none;
+}
+
+div#myImage {
+   display: flex;
+   flex-direction: row;
+   /* Place images within a flexbox on a single row */
+   flex-wrap: wrap;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   /* Hide images which overflow the box border */
+}
+
+/* div#myImage figure {
+   display: block;
+ 
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   /* Hide images which overflow the box border */
+} */
+
+
+
+div#lbOverlay {
+   position: fixed;
+   /* Overlay is fixed on screen */
+   z-index: 1;
+   /* Overlay sits on top of other content */
+   width: 100%;
+   /* Full width */
+   height: 100%;
+   /* Full height */
+   top: 0;
+   left: 0;
+   background-color: rgba(104, 49, 0, 0.85);
+   /* Semitransparent brown background */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* Styles for the figure box within the overlay */
+div#lbOverlay figure {
+   display: block;
+   width: 80%;
+   max-width: 800px;
+}
+
+/* Styles for the image within the overlay */
+div#lbOverlay figure img {
+   display: block;
+   margin: auto;
+   width: 100%;
+   height: auto;
+   box-shadow: 5px 5px 20px black;
+   animation-name: zoom;
+   /* animate the opening of the figure */
+   animation-duration: 1s;
+   /* over a 1-second interval */
+}
+
+/* Styles for the caption within the overlay */
+div#lbOverlay figure figcaption {
+   text-align: center;
+   font-size: 1.25em;
+   color: white;
+   margin-top: 10px;
+
+}
+
+/* div#lbOverlay button {
+   position: absolute;
+   top: 100px;
+   text-align: center;
+   font-size: 1.25em;
+   color: rgb(0, 0, 0);
+   background-color: #eeeeee;
+   margin-top: 10px;
+   border: rgb(17, 0, 255);
+
+} */
+
+
+
+/* Styles for the overlay close button */
+div#lbOverlay div#lbOverlayClose {
+   position: absolute;
+   top: 20px;
+   right: 40px;
+   color: #f1f1f1;
+   font-size: 40px;
+   cursor: pointer;
+   user-select: none;
+}
+
+/* Hovering styles for the modal window close button */
+div#lbOverlay div#lbOverlayClose:hover {
+   color: #F7F1A9;
+   text-shadow: 3px 3px 0px black;
+}
